@@ -44,6 +44,16 @@ app.controller('PlayerController', ['$scope', function($scope, $http) {
 
     });
 
+    // format.mp4.$text is the route to the mpf file from the NPR api
+    $scope.play = function(program) {
+        if ($scope.playing) $scope.audio.pause();
+        var url = program.audio[0].format.mp4.$text;
+        audio.src = url;
+        audio.play();
+        // Store the state of the player as playing
+        $scope.playing = true;
+    }
+
 }]);  // PlayerController
 
 app.controller('RelatedController', ['$scope', function($scope) {
