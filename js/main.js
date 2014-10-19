@@ -2,6 +2,22 @@ var app = angular.module('myApp', []);
 var apiKey = 'MDE3MDc1OTY3MDE0MTM0MTUzMzI4NjVmYw001'
 var nprUrl = 'http://api.npr.org/query?id=61&fields=relatedLink,title,byline,text,audio,image,pullQuote,all&output=JSON';
 
+app.directive('nprLink', function() {
+    return {
+        restrict: 'EA',
+        require: ['^ngModel'],
+        replace: true,
+        scope: {
+            ngModel: '=',
+            play: '&'
+        },
+        templateURL: '/views/nprListItem.html',
+        link: function(scope, ele, attr) {
+            scope.duration = scope.ngModel.audio[0],duration.$text;
+        }
+    }
+});
+
 app.controller('PlayerController', ['$scope', function($scope, $http) {
     $scope.playing = false;
     $scope.audio = document.createElement('audio');
