@@ -20,8 +20,9 @@ app.directive('nprLink', function() {
 
 app.controller('PlayerController', ['$scope', function($scope, $http) {
     $scope.playing = false;
-    $scope.audio = document.createElement('audio');
-    $scope.audio.src = '/media/npr.mp4';
+    var audio = document.createElement('audio');
+    $scope.audio = audio;
+ //   $scope.audio.src = '/media/npr.mp4';
 
     $scope.play = function() {
         $scope.audio.play();
@@ -74,3 +75,7 @@ app.controller('PlayerController', ['$scope', function($scope, $http) {
 
 app.controller('RelatedController', ['$scope', function($scope) {
 }]);
+
+// Parent scope
+app.controller('FrameController', function($scope) {
+});
